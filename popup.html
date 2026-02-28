@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Spoiler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app" class="popup-card">
+  <div class="container">
+    <header class="popup-header">
+      <img src="icon128.png" alt="Anti-Spoiler" class="popup-logo">
+    </header>
+    <button class="close-btn" id="closeBtn" aria-label="Close">×</button>
+    
+    <div class="main-content">
+      <div class="custom-keywords-section">
+        <div class="section-header">
+          <h3 class="section-title">Spoilers list</h3>
+          <label class="toggle-wrap" aria-label="Blocking on/off">
+            <input type="checkbox" id="blockingToggle" class="toggle-input" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <div class="add-keyword-container">
+          <div class="keyword-input-wrap">
+            <input 
+              type="text" 
+              id="newKeywordInput" 
+              placeholder="Search..."
+              class="keyword-input"
+            >
+          </div>
+          <button id="addKeywordBtn" class="add-btn">Add</button>
+        </div>
+        
+        <div id="suggestionsContainer" class="suggestions-container" style="display: none;">
+          <!-- Suggestions will be added here dynamically -->
+        </div>
+        
+        <div class="keywords-list-wrap">
+          <div id="keywordsList" class="keywords-list">
+            <!-- Keywords will be added here dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

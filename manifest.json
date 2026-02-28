@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Anti-Spoiler",
+  "version": "1.0.0",
+  "description": "Blocks spoilers - add your own keywords to filter content across all websites",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "windows",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

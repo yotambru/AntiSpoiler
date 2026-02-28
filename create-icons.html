@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Extension Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .instructions {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .icons-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .icon-wrapper {
+      text-align: center;
+    }
+    canvas {
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-bottom: 10px;
+    }
+    canvas:hover {
+      transform: scale(1.1);
+      border-color: #667eea;
+    }
+    .icon-label {
+      font-weight: bold;
+      color: #666;
+      margin-top: 5px;
+    }
+    .note {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 20px;
+      border-right: 4px solid #2196f3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛡️ יצירת אייקונים להרחבה</h1>
+  
+  <div class="instructions">
+    <h2>הוראות:</h2>
+    <ol>
+      <li>לחץ על כל אחד מהאייקונים למטה</li>
+      <li>הקובץ יוריד אוטומטית</li>
+      <li>ודא שהקבצים נשמרו בשמות: <code>icon16.png</code>, <code>icon48.png</code>, <code>icon128.png</code></li>
+      <li>ודא שהקבצים נמצאים באותה תיקייה כמו <code>manifest.json</code></li>
+    </ol>
+  </div>
+  
+  <div class="icons-container">
+    <div class="icon-wrapper">
+      <canvas id="icon16" width="16" height="16" style="width: 64px; height: 64px; image-rendering: pixelated;"></canvas>
+      <div class="icon-label">icon16.png</div>
+    </div>
+    <div class="icon-wrapper">
+      <canvas id="icon48" width="48" height="48" style="width: 96px; height: 96px;"></canvas>
+      <div class="icon-label">icon48.png</div>
+    </div>
+    <div class="icon-wrapper">
+      <canvas id="icon128" width="128" height="128" style="width: 128px; height: 128px;"></canvas>
+      <div class="icon-label">icon128.png</div>
+    </div>
+  </div>
+  
+  <div class="note">
+    <strong>💡 טיפ:</strong> אם ההורדה לא עובדת, לחץ לחיצה ימנית על כל אייקון ובחר "Save image as..."
+  </div>
+  
+  <script>
+    function createIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) {
+        console.error('Canvas not found:', canvasId);
+        return;
+      }
+      const ctx = canvas.getContext('2d');
+      
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(1, '#764ba2');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+      
+      // Shield icon
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.moveTo(size * 0.5, size * 0.2);
+      ctx.lineTo(size * 0.7, size * 0.3);
+      ctx.lineTo(size * 0.7, size * 0.6);
+      ctx.lineTo(size * 0.5, size * 0.8);
+      ctx.lineTo(size * 0.3, size * 0.6);
+      ctx.lineTo(size * 0.3, size * 0.3);
+      ctx.closePath();
+      ctx.fill();
+      
+      // X mark
+      ctx.strokeStyle = '#667eea';
+      ctx.lineWidth = Math.max(1, size * 0.15);
+      ctx.beginPath();
+      ctx.moveTo(size * 0.35, size * 0.35);
+      ctx.lineTo(size * 0.65, size * 0.65);
+      ctx.moveTo(size * 0.65, size * 0.35);
+      ctx.lineTo(size * 0.35, size * 0.65);
+      ctx.stroke();
+    }
+    
+    function setupDownload(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      
+      canvas.addEventListener('click', function() {
+        canvas.toBlob(function(blob) {
+          if (!blob) {
+            alert('שגיאה ביצירת הקובץ. נסה לחיצה ימנית ושמירה ידנית.');
+            return;
+          }
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 'image/png');
+      });
+    }
+    
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        createIcon('icon16', 16);
+        createIcon('icon48', 48);
+        createIcon('icon128', 128);
+        setupDownload('icon16', 'icon16.png');
+        setupDownload('icon48', 'icon48.png');
+        setupDownload('icon128', 'icon128.png');
+      });
+    } else {
+      createIcon('icon16', 16);
+      createIcon('icon48', 48);
+      createIcon('icon128', 128);
+      setupDownload('icon16', 'icon16.png');
+      setupDownload('icon48', 'icon48.png');
+      setupDownload('icon128', 'icon128.png');
+    }
+  </script>
+</body>
+</html>

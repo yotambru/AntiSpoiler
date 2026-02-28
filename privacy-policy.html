@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Anti-Spoiler Extension</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .last-updated {
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: <span id="date"></span></p>
+    
+    <h2>Data Collection</h2>
+    <p>This extension <strong>does not collect, store, or transmit</strong> any personal data or user information.</p>
+    
+    <h2>Local Storage</h2>
+    <p>The extension uses Chrome Storage API to save your preferences (on/off status) <strong>locally on your device only</strong>. This data never leaves your computer.</p>
+    
+    <h2>Permissions</h2>
+    <p>The extension requires access to all websites to scan and block spoiler content. <strong>No data is collected or transmitted</strong> - all checks are performed only on your computer.</p>
+    
+    <h2>Data Sharing</h2>
+    <p>We <strong>do not share</strong> any information with third parties because we don't collect information in the first place.</p>
+    
+    <h2>Policy Changes</h2>
+    <p>If we change this policy, we will update the date above. We recommend checking periodically.</p>
+    
+    <h2>Contact</h2>
+    <p>If you have questions about this policy, you can contact us through GitHub or Chrome Web Store.</p>
+    
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US');
+    </script>
+</body>
+</html>
