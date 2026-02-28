@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Anti-Spoiler</string>
+    <string name="accessibility_service_description">חוסם תוכן ספויילרים בהתאם למילות המפתח שבחרת. השירות קורא תוכן על המסך כדי לזהות ולחסום תוכן לא רצוי.</string>
+    <string name="service_enabled">שירות נגישות מופעל</string>
+    <string name="service_disabled">שירות נגישות כבוי</string>
+    <string name="enable_service">הפעל שירות נגישות</string>
+    <string name="custom_keywords">מילות מפתח מותאמות אישית</string>
+    <string name="add_keyword">הוסף מילת מפתח</string>
+    <string name="keyword_hint">לדוגמה: תוצאות משחק, סוף סדרה...</string>
+    <string name="seen_game_question">האם צפית במשחק האחרון?</string>
+</resources>

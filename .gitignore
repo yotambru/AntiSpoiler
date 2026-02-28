@@ -1,0 +1,18 @@
+# Icon files (can be regenerated)
+icon16.png
+icon48.png
+icon128.png
+
+# Python venv
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Notification</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: transparent;
+    }
+    
+    .game-notification-overlay {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border-radius: 8px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 999999;
+      min-width: 280px;
+      max-width: 320px;
+      border: 2px solid #667eea;
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    .game-notification-header {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    
+    .game-notification-question {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 15px;
+      text-align: center;
+      line-height: 1.4;
+    }
+    
+    .game-notification-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .game-notification-btn {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+    }
+    
+    .game-notification-btn-yes {
+      background: #4caf50;
+      color: white;
+    }
+    
+    .game-notification-btn-yes:hover {
+      background: #45a049;
+      transform: translateY(-1px);
+    }
+    
+    .game-notification-btn-no {
+      background: #f5f5f5;
+      color: #333;
+      border: 2px solid #ddd;
+    }
+    
+    .game-notification-btn-no:hover {
+      background: #e0e0e0;
+    }
+    
+    .game-notification-close {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #999;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .game-notification-close:hover {
+      background: #f5f5f5;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-notification-overlay" id="gameNotification">
+    <button class="game-notification-close" id="closeBtn">×</button>
+    <div class="game-notification-header">Anti-Spoiler</div>
+    <div class="game-notification-question">Did you watch the last game?</div>
+    <div class="game-notification-buttons">
+      <button class="game-notification-btn game-notification-btn-yes" id="yesBtn">Yes</button>
+      <button class="game-notification-btn game-notification-btn-no" id="noBtn">No</button>
+    </div>
+  </div>
+  
+  <script src="game-notification.js"></script>
+</body>
+</html>
