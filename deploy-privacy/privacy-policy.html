@@ -9,48 +9,179 @@
             font-family: Arial, sans-serif;
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 20px 20px 60px;
+            line-height: 1.7;
+            color: #222;
         }
         h1 {
-            color: #333;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
+            color: #1a1a1a;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 12px;
         }
         h2 {
-            color: #555;
-            margin-top: 30px;
+            color: #333;
+            margin-top: 36px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 12px;
+        }
+        h3 {
+            color: #444;
+            margin-top: 24px;
         }
         .last-updated {
-            color: #888;
+            color: #666;
             font-style: italic;
+            margin-bottom: 32px;
+        }
+        ul {
+            padding-left: 24px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        .highlight-box {
+            background: #f0f9f0;
+            border: 1px solid #4CAF50;
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin: 24px 0;
+        }
+        a {
+            color: #2a7ae2;
         }
     </style>
 </head>
 <body>
     <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: <span id="date"></span></p>
-    
-    <h2>Data Collection</h2>
-    <p>This extension <strong>does not collect, store, or transmit</strong> any personal data or user information.</p>
-    
-    <h2>Local Storage</h2>
-    <p>The extension uses Chrome Storage API to save your preferences (on/off status) <strong>locally on your device only</strong>. This data never leaves your computer.</p>
-    
-    <h2>Permissions</h2>
-    <p>The extension requires access to all websites to scan and block spoiler content. <strong>No data is collected or transmitted</strong> - all checks are performed only on your computer.</p>
-    
-    <h2>Data Sharing</h2>
-    <p>We <strong>do not share</strong> any information with third parties because we don't collect information in the first place.</p>
-    
-    <h2>Policy Changes</h2>
-    <p>If we change this policy, we will update the date above. We recommend checking periodically.</p>
-    
-    <h2>Contact</h2>
-    <p>If you have questions about this policy, you can contact us through GitHub or Chrome Web Store.</p>
-    
-    <script>
-        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US');
-    </script>
+    <p class="last-updated">Last updated: March 16, 2025</p>
+
+    <div class="highlight-box">
+        <strong>Summary:</strong> Anti-Spoiler does not collect, transmit, or share any personal data.
+        All user settings and keywords are stored exclusively on your own device using the browser's
+        built-in local storage. The extension makes outbound requests only to public knowledge-base
+        APIs (Wikidata and Wikipedia) solely to help you discover related spoiler keywords — no
+        personal information is included in those requests.
+    </div>
+
+    <h2>1. Who We Are</h2>
+    <p>
+        Anti-Spoiler is a Chrome browser extension developed and maintained as an independent
+        open-source project. References to "we", "us", or "our" in this policy refer to the
+        extension's developer(s).
+    </p>
+
+    <h2>2. Data We Collect</h2>
+    <p>
+        <strong>We do not collect any personal or sensitive user data.</strong> No data is ever
+        sent to our servers — because we do not operate any servers.
+    </p>
+    <p>The extension stores the following information <em>locally on your device only</em>
+    using the Chrome Storage API (<code>chrome.storage.local</code>):</p>
+    <ul>
+        <li><strong>Spoiler keywords:</strong> The list of keywords and phrases you add to block spoilers.</li>
+        <li><strong>Enabled/disabled state:</strong> Whether the extension is currently active.</li>
+        <li><strong>Game/event state:</strong> A record of the current game or event (e.g. date, whether you have marked it as watched), used to determine when to display spoiler blocking.</li>
+        <li><strong>Keyword suggestion cache:</strong> When you request related keyword suggestions, the results returned by the Wikidata public API are cached locally so future lookups are faster and do not require repeated network requests.</li>
+    </ul>
+    <p>
+        None of this information ever leaves your device. It is not transmitted to us or any
+        third party.
+    </p>
+
+    <h2>3. Third-Party API Requests</h2>
+    <p>
+        When you use the "Find related keywords" feature, the extension makes outbound HTTPS
+        requests to the following <strong>public, read-only APIs</strong>:
+    </p>
+
+    <h3>Wikidata API</h3>
+    <ul>
+        <li><strong>URL:</strong> <a href="https://www.wikidata.org">https://www.wikidata.org</a></li>
+        <li><strong>Purpose:</strong> To search for entities (people, teams, events) related to the keyword you typed, and retrieve their name variants and aliases.</li>
+        <li><strong>Data sent:</strong> The keyword text you typed. No personal information is included.</li>
+        <li><strong>Wikidata's privacy policy:</strong> <a href="https://foundation.wikimedia.org/wiki/Privacy_policy" target="_blank" rel="noopener">https://foundation.wikimedia.org/wiki/Privacy_policy</a></li>
+    </ul>
+
+    <h3>Wikipedia API</h3>
+    <ul>
+        <li><strong>URL:</strong> <a href="https://en.wikipedia.org">https://en.wikipedia.org</a> (and language-specific variants)</li>
+        <li><strong>Purpose:</strong> To retrieve publicly available article text (for sports figures) in order to identify the current team or organization associated with a keyword.</li>
+        <li><strong>Data sent:</strong> The entity name or article title derived from the Wikidata search. No personal information is included.</li>
+        <li><strong>Wikipedia's privacy policy:</strong> <a href="https://foundation.wikimedia.org/wiki/Privacy_policy" target="_blank" rel="noopener">https://foundation.wikimedia.org/wiki/Privacy_policy</a></li>
+    </ul>
+
+    <p>
+        These API calls are made directly from your browser. The extension developer does not
+        receive, intercept, or log any of these requests or their responses.
+    </p>
+
+    <h2>4. Data Handling and Storage</h2>
+    <ul>
+        <li><strong>Storage location:</strong> All data is stored locally on your device using <code>chrome.storage.local</code>, which is sandboxed to this extension.</li>
+        <li><strong>Retention:</strong> Data persists until you uninstall the extension or manually clear it. There is no automatic expiry, except for the keyword suggestion cache which is automatically refreshed after 7 days.</li>
+        <li><strong>Access:</strong> Only this extension can access its own storage. We cannot access, view, or retrieve your stored data remotely.</li>
+        <li><strong>Encryption:</strong> Chrome's local storage is protected by your operating system's user account security and Chrome's sandboxing model. We do not apply additional encryption.</li>
+    </ul>
+
+    <h2>5. Data Sharing</h2>
+    <p>
+        <strong>We do not share any data with any third party.</strong> Because we do not collect
+        or receive any data from you, there is nothing to share.
+    </p>
+    <p>
+        The only outbound network communication the extension performs is the public API
+        requests to Wikidata and Wikipedia described in Section 3 above, which are initiated
+        solely on your behalf and contain only the keyword text you typed.
+    </p>
+
+    <h2>6. Permissions Justification</h2>
+    <p>The extension requests the following browser permissions:</p>
+    <ul>
+        <li><strong>storage:</strong> Required to save your keywords and preferences locally on your device.</li>
+        <li><strong>activeTab:</strong> Required to interact with the currently open tab when you use the extension popup.</li>
+        <li><strong>tabs / windows:</strong> Required to apply spoiler blocking consistently across browser windows and tab navigation events.</li>
+        <li><strong>host_permissions (&lt;all_urls&gt;):</strong> Required to inject the content script that scans and hides spoiler content on every webpage you visit. No browsing data is collected or transmitted as a result of this permission.</li>
+    </ul>
+
+    <h2>7. Children's Privacy</h2>
+    <p>
+        This extension does not knowingly collect data from anyone, including children under 13
+        (or the applicable age of digital consent in your jurisdiction). Since no data is
+        collected at all, this extension is safe to use regardless of age.
+    </p>
+
+    <h2>8. Your Rights and Data Deletion</h2>
+    <p>
+        Because all data is stored locally on your device, you have full control over it at
+        all times:
+    </p>
+    <ul>
+        <li>You can clear all stored data by uninstalling the extension.</li>
+        <li>You can remove individual keywords at any time from the extension popup.</li>
+        <li>You can clear Chrome extension storage through Chrome's developer tools
+            (<em>chrome://extensions → Details → Clear data</em>).</li>
+    </ul>
+    <p>
+        Since we never receive or store any of your data on our end, there is no additional
+        action needed from us to delete your data.
+    </p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>
+        If we update this privacy policy, we will revise the "Last updated" date at the top of
+        this page and publish the updated version at the same URL. We encourage you to review
+        this policy periodically. Continued use of the extension after a policy update
+        constitutes acceptance of the updated terms.
+    </p>
+
+    <h2>10. Contact</h2>
+    <p>
+        If you have any questions or concerns about this privacy policy or the extension's
+        data practices, please contact us via:
+    </p>
+    <ul>
+        <li>The Chrome Web Store support page for Anti-Spoiler</li>
+        <li>The project's GitHub repository (if publicly available)</li>
+    </ul>
 </body>
 </html>
